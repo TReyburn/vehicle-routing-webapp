@@ -79,10 +79,12 @@
 
 4. Implement Resource Constraints (loading/unloading coordination with set number of loading bays)
 
+5. Need way better outputs - maps (especially with route(s) rendered), better file types, turn by turn directions, etc
+
 ~ Phase 2 Ideas ~
 1. Rip out Distance Matrix and replace with an in house solution
     a. Check out OSRM: http://project-osrm.org/
     b. Open source routing engine in C++ which consumes OSM data
     c. Can utilize C++ bindings in python to leverage this
 
-2. Fork OSRM and edit to allow disabling of right/left turns
+2. Fork OSRM and edit to allow disabling of right/left turns - this will be a HUGE feature and undertaking
