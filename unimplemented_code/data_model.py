@@ -1,7 +1,6 @@
 def create_data_model():
     """Stores the data for the problem."""
-    data = {}
-    data['distance_matrix'] = [
+    data = {'distance_matrix': [
         [
             0, 548, 776, 696, 582, 274, 502, 194, 308, 194, 536, 502, 388, 354,
             468, 776, 662
@@ -70,7 +69,5 @@ def create_data_model():
             662, 1210, 754, 1358, 1244, 708, 480, 856, 514, 468, 354, 844, 730,
             536, 194, 798, 0
         ],
-    ]
-    data['num_vehicles'] = 4
-    data['depot'] = 0
+    ], 'num_vehicles': 4, 'depot': 0}
     return data

@@ -4,7 +4,7 @@ from ortools.constraint_solver import pywrapcp
 from data_model import create_data_model
 
 
-def print_solution(data, manager, routing, solution):
+def return_solution(data, manager, routing, solution):
     """Prints solution on console."""
     max_route_distance = 0
     for vehicle_id in range(data['num_vehicles']):
@@ -24,8 +24,6 @@ def print_solution(data, manager, routing, solution):
     print('Maximum of the route distances: {}m'.format(max_route_distance))
 
 
-
-
 def main():
     """Solve the CVRP problem."""
     # Instantiate the data problem.
@@ -37,7 +35,6 @@ def main():
 
     # Create Routing Model.
     routing = pywrapcp.RoutingModel(manager)
-
 
     # Create and register a transit callback.
     def distance_callback(from_index, to_index):
@@ -73,7 +70,7 @@ def main():
 
     # Print solution on console.
     if solution:
-        print_solution(data, manager, routing, solution)
+        return_solution(data, manager, routing, solution)
 
 
 if __name__ == '__main__':
