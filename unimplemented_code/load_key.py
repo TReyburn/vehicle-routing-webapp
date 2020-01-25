@@ -4,11 +4,11 @@ def load_key(path: str) -> str:
         return key
 
 
-def main():
+def _main():
     key_p = r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\secret.txt'
     key = load_key(key_p)
     print(key)
 
 
 if __name__ == '__main__':
-    main()
+    _main()

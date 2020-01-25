@@ -6,11 +6,11 @@ def load_address_csv(path: str) -> list:
         return file
 
 
-def main():
+def _main():
     filep = r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\addresses.csv'
     data = load_address_csv(filep)
     print(data)
 
 
 if __name__ == '__main__':
-    main()
+    _main()
