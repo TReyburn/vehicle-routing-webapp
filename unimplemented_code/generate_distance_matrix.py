@@ -44,3 +44,21 @@ def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
                 node_dist_list.append(randint(min_value, max_value))
         dist_matrix.append(node_dist_list)
     return dist_matrix
+
+
+def _main():
+    length = 10
+    minimum_value = 25
+    maximum_value = 5000
+    matrix = gen_dist_matrix(length, minimum_value, maximum_value)
+
+    # unit test case: value is 0 for all instances where origin node = destination node
+    for idx, row in enumerate(matrix):
+        assert row[idx] == 0
+
+    # unit test case: length of matrix is equal to user specified length
+    assert len(matrix) == length
+
+
+if __name__ == '__main__':
+    _main()
