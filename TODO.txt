@@ -5,6 +5,12 @@
     c. Need to implement a timeout for finding the solution (1 minute?)
     d. Need to implement a timeout for Distance Matrix API call (10 seconds?)
 
+2. Implement Unit Tests
+    a. All _main() functions in unimplemented_code need unit tests before converting to Flask Models/Resources
+    b. Need to design a unit test factory class for Flask Models/Resources
+    c. Implement unit tests for all Flask Models/Resources
+    d. Implement unit tests for App
+
 2. Implement VRP backend in Flask
     a. Create a function to return results as a 'csv' for end user
     b. Create a simple sqlite database
@@ -69,6 +75,11 @@
 
 5. UI/UX overhaul
     a. Because I'm sure my original UI will be garbage
+
+6. Explore Distance Matrix API alternatives
+    a. Mapbox
+    b. Here
+    c. OSRM
 
 ~ Phase 1 Ideas ~
 1. Implement Capacity Constrained Vehicle Routing (Vehicles can only hold so much cargo) (Check out: Penalties and Dropping Visits)
