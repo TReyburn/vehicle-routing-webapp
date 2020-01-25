@@ -1,4 +1,6 @@
 def load_key(path: str) -> str:
+    """ Loads api key from secrets file."""
+
     with open(path) as fh:
         key = fh.read()
         return key

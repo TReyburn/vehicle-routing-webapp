@@ -1,4 +1,10 @@
 def load_address_csv(path: str) -> list:
+    """
+        Loads addresses from csv,
+        prepares string for use in Distance Matrix API,
+        and returns as list.
+    """
+
     with open(path) as fh:
         file = fh.read()
         file = file.splitlines()
