@@ -1,4 +1,4 @@
-def load_address_csv(path):
+def load_address_csv(path: str) -> list:
     with open(path) as fh:
         file = fh.read()
         file = file.splitlines()
