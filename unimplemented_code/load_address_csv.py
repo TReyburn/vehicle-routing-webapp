@@ -8,7 +8,7 @@ def load_address_csv(path: str) -> list:
     with open(path) as fh:
         file = fh.read()
         file = file.splitlines()
-        file = [line.rstrip(',').replace(' ', '+').replace(',','+') for line in file]
+        file = [line.rstrip(',').replace(' ', '+').replace(',', '+') for line in file]
         return file
 
 
