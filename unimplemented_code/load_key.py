@@ -1,4 +1,4 @@
-def load_key(path):
+def load_key(path: str) -> str:
     with open(path) as fh:
         key = fh.read()
         return key
