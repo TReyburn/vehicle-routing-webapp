@@ -1,7 +1,7 @@
 from models.generate_distance_matrix import gen_dist_matrix
 
 
-def _main():
+def test_gen_dist_matrix() -> bool:
 
     length = 10
     minimum_value = 20
@@ -177,6 +177,4 @@ def _main():
     except ValueError:
         pass
 
-
-if __name__ == '__main__':
-    _main()
+    return True
