@@ -1,4 +1,6 @@
 from models.generate_distance_matrix import gen_dist_matrix
+from models.validate_inputs.generate_distance_matrix import _validate_inputs
+from tests.errors.errors import UnitTypeError, UnitValueError
 
 
 def test_gen_dist_matrix() -> bool:
@@ -68,43 +70,43 @@ def test_gen_dist_matrix() -> bool:
         for value in row:
             assert value <= maximum_value + asymmetry_value
 
-    # unit test case: symmetric & asymmetric: negative/bad/zero values in inputs should raise ValueError
+    # unit test case: symmetric & asymmetric: negative/bad/zero values in inputs should raise UnitValueError
     bad_values = [-1, 0, -5, -123]
     for bad in bad_values:
         try:
-            gen_dist_matrix(bad, minimum_value, maximum_value)
-            raise AssertionError(f'{bad} was a bad length value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(bad, minimum_value, maximum_value)
+            raise AssertionError(f'{bad} was a bad length value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(length, bad, maximum_value)
-            raise AssertionError(f'{bad} was a bad min_value value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(length, bad, maximum_value)
+            raise AssertionError(f'{bad} was a bad min_value value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(length, minimum_value, bad)
-            raise AssertionError(f'{bad} was a bad max_value value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(length, minimum_value, bad)
+            raise AssertionError(f'{bad} was a bad max_value value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(bad, minimum_value, maximum_value, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad length value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(bad, minimum_value, maximum_value, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad length value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(length, bad, maximum_value, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad min_value value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(length, bad, maximum_value, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad min_value value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(length, minimum_value, bad, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad max_value value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(length, minimum_value, bad, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad max_value value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
         try:
-            gen_dist_matrix(length, minimum_value, maximum_value, asym=True, asym_max=bad)
-            raise AssertionError(f'{bad} was a bad asym_max value and should have raised a ValueError')
-        except ValueError:
+            _validate_inputs(length, minimum_value, maximum_value, asym=True, asym_max=bad)
+            raise AssertionError(f'{bad} was a bad asym_max value and should have raised a UnitValueError')
+        except UnitValueError:
             pass
 
     # unit test case: symmetric & asymmetric: bad types should throw type error
@@ -112,69 +114,74 @@ def test_gen_dist_matrix() -> bool:
                  {1, 2, 'a'}, object]
     for bad in bad_types:
         try:
-            gen_dist_matrix(bad, minimum_value, maximum_value)
-            raise AssertionError(f'{bad} was a bad length type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(bad, minimum_value, maximum_value)
+            raise AssertionError(f'{bad} was a bad length type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(length, bad, maximum_value)
-            raise AssertionError(f'{bad} was a bad min_value type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, bad, maximum_value)
+            raise AssertionError(f'{bad} was a bad min_value type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(length, maximum_value, bad)
-            raise AssertionError(f'{bad} was a bad max_value type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, maximum_value, bad)
+            raise AssertionError(f'{bad} was a bad max_value type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(bad, minimum_value, maximum_value, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad length type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(bad, minimum_value, maximum_value, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad length type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(length, bad, maximum_value, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad min_value type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, bad, maximum_value, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad min_value type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(length, minimum_value, bad, asym=True, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad max_value type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, minimum_value, bad, asym=True, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad max_value type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
         try:
-            gen_dist_matrix(length, minimum_value, maximum_value, asym=True, asym_max=bad)
-            raise AssertionError(f'{bad} was a bad asym_max type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, minimum_value, maximum_value, asym=True, asym_max=bad)
+            raise AssertionError(f'{bad} was a bad asym_max type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
     for bad in bad_types[2:]:
         try:
-            gen_dist_matrix(length, minimum_value, maximum_value, asym=bad, asym_max=asymmetry_value)
-            raise AssertionError(f'{bad} was a bad asym type and should have raised a TypeError')
-        except TypeError:
+            _validate_inputs(length, minimum_value, maximum_value, asym=bad, asym_max=asymmetry_value)
+            raise AssertionError(f'{bad} was a bad asym type and should have raised a UnitTypeError')
+        except UnitTypeError:
             pass
 
     # unit test case: symmetric & asymmetric: min value must be less than max value
     test_min = 10
     test_max = 1
     try:
-        gen_dist_matrix(length, test_min, test_max)
+        _validate_inputs(length, test_min, test_max)
         raise AssertionError('Min value must be less than max value')
-    except ValueError:
+    except UnitValueError:
         pass
     try:
-        gen_dist_matrix(length, test_min, test_min)
+        _validate_inputs(length, test_min, test_min)
         raise AssertionError('Min value must be less than max value')
-    except ValueError:
+    except UnitValueError:
         pass
     try:
-        gen_dist_matrix(length, test_min, test_max, asym=True, asym_max=asymmetry_value)
+        _validate_inputs(length, test_min, test_max, asym=True, asym_max=asymmetry_value)
         raise AssertionError('Min value must be less than max value')
-    except ValueError:
+    except UnitValueError:
         pass
     try:
-        gen_dist_matrix(length, test_min, test_min, asym=True, asym_max=asymmetry_value)
+        _validate_inputs(length, test_min, test_min, asym=True, asym_max=asymmetry_value)
         raise AssertionError('Min value must be less than max value')
-    except ValueError:
+    except UnitValueError:
         pass
+
+    """
+        Need to add tests that asserts _validate_inputs works correctly and returns None type
+        for all bad inputs into gen_dist_matrix.
+    """
 
     return True
