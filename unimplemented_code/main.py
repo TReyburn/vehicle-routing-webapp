@@ -4,7 +4,6 @@ from distance_matrix import create_distance_matrix, create_data
 from load_address_csv import load_address_csv
 from load_key import load_key
 from generate_distance_matrix import gen_dist_matrix
-import timeit
 
 
 def main():
