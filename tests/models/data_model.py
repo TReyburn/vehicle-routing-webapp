@@ -68,7 +68,9 @@ def test_data_model() -> bool:
             pass
 
     """
-        Need to add unit tests which test the output of the function too
+        Need to add unit tests which test the output of the create_data_model function
+        
+        Also need to add tests which proves a failure of the validate_inputs func in create_data_model returns None
     """
 
     return True

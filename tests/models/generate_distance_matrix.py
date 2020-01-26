@@ -180,8 +180,7 @@ def test_gen_dist_matrix() -> bool:
         pass
 
     """
-        Need to add tests that asserts _validate_inputs works correctly and returns None type
-        for all bad inputs into gen_dist_matrix.
+        Need to add tests that asserts _validate_inputs works correctly and causes gen_dist_matrix to return None
     """
 
     return True
