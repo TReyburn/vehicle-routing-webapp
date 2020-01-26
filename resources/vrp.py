@@ -7,8 +7,8 @@ from models.vrp import vrp_solve
 class VehicleRouting(Resource):
 
     def __init__(self):
-        self.dist_matrix = gen_dist_matrix(50, 15, 800)
-        self.data_model = create_data_model(self.dist_matrix, 3)
+        self.dist_matrix = gen_dist_matrix(75, 15, 800, asym=True, asym_max=15)
+        self.data_model = create_data_model(self.dist_matrix, 5)
 
     def get(self):
         return vrp_solve(self.data_model)
