@@ -21,5 +21,10 @@ def contact():
     return render_template('contact.html')
 
 
+@app.route('/routing')
+def routing():
+    return render_template('routing.html')
+
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
