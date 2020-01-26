@@ -67,6 +67,6 @@ def vrp_solve(user_data: dict) -> dict:
 
     # Returns solution if one is found
     if solution:
-        return return_solution(data, manager, routing, solution)
+        return _return_solution(data, manager, routing, solution)
     else:
         return {'Message': 'No solution', 'Status': 'Failure'}
