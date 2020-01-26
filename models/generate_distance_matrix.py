@@ -1,20 +1,8 @@
 from random import randint
 
 
-def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
-                    asym: bool = False, asym_max: int = 1) -> list:
-    """
-        Generate random distance matrices based on user inputs in order to test Vehicle Routing Solver.
-        This allows us to bypass the need for the (expensive) Distance Matrix API.
-
-    :param m_length: number of distance matrix nodes
-    :param min_value: minimum potential distance between nodes
-    :param max_value: maximum potential distance between nodes
-    :param asym: kwarg to indicate if reverse route is asymmetrical. (i.e. a -> b has a different length than b -> a).
-        Set to False by default
-    :param asym_max: kwarg to set maximum potential difference if routes between nodes are asymmetrical.
-        Set to 1 by default.
-    """
+def validate_inputs(m_length: int, min_value: int, max_value: int,
+                    asym: bool, asym_max: int) -> bool:
 
     # Quick unit test of user inputs
     for key, value in {'m_length': m_length, 'min_value': min_value,
@@ -29,6 +17,27 @@ def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
         raise TypeError(f'{asym} is not a boolean.')
     if min_value >= max_value:
         raise ValueError('Min Value must be less than Max Value')
+
+    return True
+
+
+def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
+                    asym: bool = False, asym_max: int = 1) -> list or None:
+    """
+        Generate random distance matrices based on user inputs in order to test Vehicle Routing Solver.
+        This allows us to bypass the need for the (expensive) Distance Matrix API.
+
+    :param m_length: number of distance matrix nodes
+    :param min_value: minimum potential distance between nodes
+    :param max_value: maximum potential distance between nodes
+    :param asym: kwarg to indicate if reverse route is asymmetrical. (i.e. a -> b has a different length than b -> a).
+        Set to False by default
+    :param asym_max: kwarg to set maximum potential difference if routes between nodes are asymmetrical.
+        Set to 1 by default.
+    """
+
+    if not validate_inputs(m_length, min_value, max_value, asym, asym_max):
+        return None
 
     dist_matrix = []
 
