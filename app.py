@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_restful import Api
 
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -10,5 +11,10 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000, debug=True)
