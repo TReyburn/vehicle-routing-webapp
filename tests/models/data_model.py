@@ -1,6 +1,6 @@
 from models.data_model import create_data_model
 from tests.errors.errors import UnitTypeError, UnitValueError
-from models.validate_inputs.data_model_inputs import _validate_inputs
+from models.validate_inputs.data_model import _validate_inputs
 
 
 def test_data_model() -> bool:

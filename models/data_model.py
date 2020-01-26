@@ -1,5 +1,5 @@
 from tests.errors.errors import UnitTypeError, UnitValueError
-from models.validate_inputs.data_model_inputs import _validate_inputs
+from models.validate_inputs.data_model import _validate_inputs
 
 
 def create_data_model(user_data: list, num_vehicle: int, depot_loc: int = 0) -> dict or None:
