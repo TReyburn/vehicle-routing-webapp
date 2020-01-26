@@ -12,6 +12,9 @@ __pycache__/
 # Passwords and Secrets
 secret.txt
 
+# Test files
+__test__
+
 # Distribution / packaging
 .Python
 build/
