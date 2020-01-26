@@ -1,7 +1,7 @@
 from random import randint
 
 
-def validate_inputs(m_length: int, min_value: int, max_value: int,
+def _validate_inputs(m_length: int, min_value: int, max_value: int,
                     asym: bool, asym_max: int) -> bool:
 
     # Quick unit test of user inputs
@@ -36,7 +36,7 @@ def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
         Set to 1 by default.
     """
 
-    if not validate_inputs(m_length, min_value, max_value, asym, asym_max):
+    if not _validate_inputs(m_length, min_value, max_value, asym, asym_max):
         return None
 
     dist_matrix = []
