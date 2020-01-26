@@ -8,16 +8,16 @@ from generate_distance_matrix import gen_dist_matrix
 
 def main():
     debug = True
-    asym = False
+    asym = True
     key = load_key(r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\secret.txt')
     addresses = load_address_csv(r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\addresses.csv')
     data = create_data(addresses, key)
     if debug and not asym:
         print('1')
-        distance_matrix = gen_dist_matrix(100, 15, 900)
+        distance_matrix = gen_dist_matrix(50, 15, 900)
     elif debug and asym:
         print('2')
-        distance_matrix = gen_dist_matrix(20, 15, 900, asym=asym, asym_max=50)
+        distance_matrix = gen_dist_matrix(80, 15, 900, asym=True, asym_max=50)
     else:
         print('3')
         distance_matrix = create_distance_matrix(data)
