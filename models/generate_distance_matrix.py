@@ -1,24 +1,6 @@
 from random import randint
-
-
-def _validate_inputs(m_length: int, min_value: int, max_value: int,
-                    asym: bool, asym_max: int) -> bool:
-
-    # Quick unit test of user inputs
-    for key, value in {'m_length': m_length, 'min_value': min_value,
-                       'max_value': max_value, 'asym_max': asym_max}.items():
-        if type(value) is not int:
-            raise TypeError(f'{key} is not an integer.')
-        if value <= 0:
-            raise ValueError(f'{key} must be greater than 0.')
-        if key == 'm_length' and value == 1:
-            raise ValueError(f'{key} must be greater than 1.')
-    if type(asym) is not bool:
-        raise TypeError(f'{asym} is not a boolean.')
-    if min_value >= max_value:
-        raise ValueError('Min Value must be less than Max Value')
-
-    return True
+from tests.errors.errors import UnitTypeError, UnitValueError
+from models.validate_inputs.generate_distance_matrix import _validate_inputs
 
 
 def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
@@ -36,7 +18,9 @@ def gen_dist_matrix(m_length: int, min_value: int, max_value: int,
         Set to 1 by default.
     """
 
-    if not _validate_inputs(m_length, min_value, max_value, asym, asym_max):
+    try:
+        _validate_inputs(m_length, min_value, max_value, asym, asym_max)
+    except UnitTypeError or UnitValueError:
         return None
 
     dist_matrix = []
