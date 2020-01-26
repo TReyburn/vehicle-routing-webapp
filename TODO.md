@@ -82,7 +82,7 @@
     - [ ] b. Here
     - [ ] c. OSRM
 ##
-###Phase 1 Ideas
+### Phase 1 Ideas
 1. Implement Capacity Constrained Vehicle Routing (Vehicles can only hold so much cargo) (Check out: Penalties and Dropping Visits)
 
 2. Implement Pickups and Deliveries Options (Like a food delivery service optimization)
@@ -93,7 +93,7 @@
 
 5. Need way better outputs - maps (especially with route(s) rendered), better file types, turn by turn directions, etc
 ##
-###Phase 2 Ideas
+### Phase 2 Ideas
 1. Rip out Distance Matrix and replace with an in house solution
     1. Check out OSRM: http://project-osrm.org/
     2. Open source routing engine in C++ which consumes OSM data
