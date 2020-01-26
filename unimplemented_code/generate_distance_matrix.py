@@ -74,6 +74,12 @@ def _main():
     # unit test case: symmetric: length of matrix is equal to user specified length
     assert len(matrix) == length
 
+    # unit test case: symmetric: function returns a list
+    assert type(gen_dist_matrix(length, minimum_value, maximum_value)) is list
+
+    # unit test case: asymmetric: function returns a list
+    assert type(gen_dist_matrix(length, minimum_value, maximum_value, asym=True, asym_max=asymmetry_value)) is list
+
     # unit test case: symmetric: smallest non-zero value in matrix is >= minimum_value
     for row in matrix:
         for value in row:
