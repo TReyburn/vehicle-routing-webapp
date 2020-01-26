@@ -2,52 +2,26 @@
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
-#
 
-from data_model import create_data_model
-from distance_matrix import create_distance_matrix, create_data
-from load_address_csv import load_address_csv
-from load_key import load_key
-
-
-def print_solution(data, manager, routing, solution):
-    """Prints solution on console."""
-    max_route_distance = 0
-    for vehicle_id in range(data['num_vehicles']):
-        index = routing.Start(vehicle_id)
-        plan_output = 'Route for vehicle {}:\n'.format(vehicle_id)
-        route_distance = 0
-        while not routing.IsEnd(index):
-            plan_output += ' {} -> '.format(manager.IndexToNode(index))
-            previous_index = index
-            index = solution.Value(routing.NextVar(index))
-            route_distance += routing.GetArcCostForVehicle(
-                previous_index, index, vehicle_id)
-        plan_output += '{}\n'.format(manager.IndexToNode(index))
-        plan_output += 'Distance of the route: {}m\n'.format(route_distance)
-        print(plan_output)
-        max_route_distance = max(route_distance, max_route_distance)
-    print('Maximum of the route distances: {}m'.format(max_route_distance))
-
-
-def return_solution(data, manager, routing, solution):
-    output_list = []
-
-    for vehicle_id in range(data['num_vehicles']):
-        index = routing.Start(vehicle_id)
+def _return_solution(_data: dict, _manager, _routing, _solution) -> dict:
+    """ Returns solution as a dict."""
+    output_dict = {}
+    for vehicle_id in range(_data['num_vehicles']):
+        index = _routing.Start(vehicle_id)
         plan_output = []
         route_distance = 0
-        while not routing.IsEnd(index):
-            plan_output.append(manager.IndexToNode(index))
+        while not _routing.IsEnd(index):
+            plan_output.append(_manager.IndexToNode(index))
             previous_index = index
-            index = solution.Value(routing.NextVar(index))
-            route_distance += routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
-        plan_output.append(manager.IndexToNode(index))
-        output_list.append([vehicle_id, str(plan_output).strip('[]'), route_distance])
-    return output_list
+            index = _solution.Value(_routing.NextVar(index))
+            route_distance += _routing.GetArcCostForVehicle(previous_index, index, vehicle_id)
+        plan_output.append(_manager.IndexToNode(index))
+        output_dict[f'Vehicle ID {vehicle_id}'] = {'Route': plan_output, 'Distance': route_distance}
+    output_dict['Status'] = 'Success'
+    return output_dict
 
 
-def cvrp_solve(user_data):
+def vrp_solve(user_data: dict) -> dict:
     """Solve the CVRP problem."""
     # Instantiate the data problem.
     # data = create_data_model()
@@ -78,7 +52,7 @@ def cvrp_solve(user_data):
     routing.AddDimension(
         transit_callback_index,
         0,  # no slack
-        300000000000,  # vehicle maximum travel distance
+        3000,  # vehicle maximum travel distance
         True,  # start cumul to zero
         dimension_name)
     distance_dimension = routing.GetDimensionOrDie(dimension_name)
@@ -91,17 +65,8 @@ def cvrp_solve(user_data):
     # Solve the problem.
     solution = routing.SolveWithParameters(search_parameters)
 
-    # Print solution on console.
+    # Returns solution if one is found
     if solution:
-        return_solution(data, manager, routing, solution)
+        return return_solution(data, manager, routing, solution)
     else:
-        return 'No solution.'
-
-
-if __name__ == '__main__':
-    key = load_key(r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\secret.txt')
-    addresses = load_address_csv(r'C:\Users\Travis\projects\vehicle-routing-webapp\unimplemented_code\address2.csv')
-    data = create_data(addresses, key)
-    distance_matrix = create_distance_matrix(data)
-    my_data = create_data_model(distance_matrix, 3)
-    cvrp_solve(my_data)
+        return {'Message': 'No solution', 'Status': 'Failure'}
