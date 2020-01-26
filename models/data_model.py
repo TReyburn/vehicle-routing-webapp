@@ -12,6 +12,12 @@ def _validate_inputs(user_data: list, num_vehicle: int, depot_loc: int = 0) -> b
         raise ValueError('depot_loc cannot be less than 0')
     if depot_loc >= len(user_data):
         raise ValueError(f'depot_loc of {depot_loc} is outside the bounds of data array')
+    for sub_list in user_data:
+        if type(sub_list) is not list:
+            raise TypeError('user_data must be a list of list of ints')
+        for value in sub_list:
+            if type(value) is not int:
+                raise TypeError('user_data must be a list of list of ints')
 
     return True
 
